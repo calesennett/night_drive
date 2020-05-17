@@ -26,8 +26,6 @@ module NightDrive
 
     config.paths.add File.join('app', 'bot'), glob: File.join('**', '*.rb')
     config.autoload_paths += Dir[Rails.root.join('app', 'bot', '*')]
-
-    config.eager_load_paths << Rails.root.join('app', 'bot')
     config.eager_load_paths << Rails.root.join('lib')
 
     config.active_job.queue_adapter = :sidekiq
