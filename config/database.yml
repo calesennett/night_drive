@@ -80,6 +80,4 @@ test:
 #
 production:
   <<: *default
-  database: night_drive_production
-  username: night_drive
-  password: <%= ENV['NIGHT_DRIVE_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
