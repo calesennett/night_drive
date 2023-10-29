@@ -26,19 +26,19 @@ module WitClient
       end
 
       def duration_confidence
-        @resp["entities"]["duration"]&.first&.fetch("confidence")
+        @resp["entities"]["wit$duration:duration"]&.first&.fetch("confidence")
       end
 
       def extracted_duration
-        @resp["entities"]["duration"].first["normalized"]["value"]
+        @resp["entities"]["wit$duration:duration"]&.first&.dig("normalized", "value")
       end
 
       def intent_confidence
-        @resp["entities"]["intent"]&.first&.fetch("confidence")
+        @resp["intents"]&.first&.fetch("confidence")
       end
 
       def extracted_intent
-        @resp["entities"]["intent"].first["value"]
+        @resp["intents"]&.first&.fetch("name")
       end
   end
 end

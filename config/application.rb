@@ -22,13 +22,15 @@ Bundler.require(*Rails.groups)
 module NightDrive
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 6.0
+    config.load_defaults 7.1
 
     config.paths.add File.join('app', 'bot'), glob: File.join('**', '*.rb')
     config.autoload_paths += Dir[Rails.root.join('app', 'bot', '*')]
     config.eager_load_paths << Rails.root.join('lib')
 
     config.active_job.queue_adapter = :sidekiq
+
+    config.active_support.key_generator_hash_digest_class = OpenSSL::Digest::SHA1
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers

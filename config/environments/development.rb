@@ -1,10 +1,6 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
-  ENV["ACCESS_TOKEN"] = Rails.application.credentials.facebook[:access_token]
-  ENV["APP_SECRET"] = Rails.application.credentials.facebook[:app_secret]
-  ENV["VERIFY_TOKEN"] = Rails.application.credentials.facebook[:verify_token]
-
   # ngrok
   config.hosts << /[a-z0-9]+\.ngrok\.io/
 

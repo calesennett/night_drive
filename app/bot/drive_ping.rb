@@ -9,7 +9,7 @@ module DrivePing
     case intent
     when 'Start_drive_session'
       if @duration
-        @message.reply(text: "Starting your drive for #{ ActionView::Base.new.distance_of_time_in_words(@duration) }!")
+        @message.reply(text: "Starting your drive for #{ ActionController::Base.helpers.distance_of_time_in_words(@duration) }")
         schedule_messages
       else
         @message.reply(text: "For how long?")

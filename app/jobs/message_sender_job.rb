@@ -11,6 +11,6 @@ class MessageSenderJob < ApplicationJob
       message: {
         text: "Ping!"
       }
-    }, access_token: Rails.application.credentials.facebook[:access_token])
+    }, page_id: Rails.application.credentials.facebook[:page_id])
   end
 end
