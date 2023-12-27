@@ -12,7 +12,7 @@ module DrivePing
         @message.reply(text: "Starting your drive for #{ ActionController::Base.helpers.distance_of_time_in_words(@duration) }")
         schedule_messages
       else
-        @message.reply(text: "For how long?")
+        @message.reply(text: 'For how long?')
       end
     when 'Stop_drive_session'
       cancel_messages
@@ -25,15 +25,14 @@ module DrivePing
   class << self
     private
       def schedule_messages
-        MessageScheduler.schedule_for(@duration, @message.sender["id"])
+        MessageScheduler.schedule_for(@duration, @message.sender['id'])
       end
 
       def cancel_messages
-        queue = Sidekiq::ScheduledSet.new
-        jobs = queue.scan("MessageSenderJob")
-        jobs.each do |job|
-          job.delete if job.args.first["arguments"].include?(@message.sender["id"])
-        end
+        SolidQueue::ScheduledExecution
+          .where(class_name: 'MessageSenderJob')
+          .where('arguments @> ?', [@message.sender['id']].to_json)
+          .destroy_all
       end
   end
 end

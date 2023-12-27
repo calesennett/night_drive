@@ -28,7 +28,7 @@ module NightDrive
     config.autoload_paths += Dir[Rails.root.join('app', 'bot', '*')]
     config.eager_load_paths << Rails.root.join('lib')
 
-    config.active_job.queue_adapter = :sidekiq
+    config.active_job.queue_adapter = :solid_queue
 
     config.active_support.key_generator_hash_digest_class = OpenSSL::Digest::SHA1
 
