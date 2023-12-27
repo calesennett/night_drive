@@ -34,7 +34,7 @@ module DrivePing
             class_name: 'MessageSenderJob',
             scheduled_at: DateTime.now..
           )
-          .where("arguments -> 'arguments' @> ?", [@message.sender['id']].to_json)
+          .where("CAST(arguments AS JSONB) ->> 'arguments' = ?", [@message.sender['id']].to_json)
           .destroy_all
       end
   end
