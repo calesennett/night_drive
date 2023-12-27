@@ -30,7 +30,10 @@ module DrivePing
 
       def cancel_messages
         SolidQueue::Job
-          .where(class_name: 'MessageSenderJob')
+          .where(
+            class_name: 'MessageSenderJob',
+            scheduled_at: DateTime.now..
+          )
           .where("arguments -> 'arguments' @> ?", [@message.sender['id']].to_json)
           .destroy_all
       end
