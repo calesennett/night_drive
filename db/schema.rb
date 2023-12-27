@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_12_27_183937) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_27_205615) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -43,7 +43,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_12_27_183937) do
   create_table "solid_queue_jobs", force: :cascade do |t|
     t.string "queue_name", null: false
     t.string "class_name", null: false
-    t.text "arguments"
+    t.jsonb "arguments"
     t.integer "priority", default: 0, null: false
     t.string "active_job_id"
     t.datetime "scheduled_at"
